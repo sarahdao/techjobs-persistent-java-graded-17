@@ -18,8 +18,6 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
-    // Add the following constructor to initialize the employerRepository
-
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("employers", employerRepository.findAll());
@@ -50,7 +48,7 @@ public class EmployerController {
         Optional optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
-            model.addAttribute("employer", employer);
+            model.addAttribute("employers", employer);
             return "employers/view";
         } else {
             return "redirect:/employers";
